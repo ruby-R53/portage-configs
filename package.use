@@ -312,3 +312,4 @@ x11-base/xorg-server -minimal udev
 x11-misc/xdg-utils -plasma
 x11-misc/xfe -startup-notification
 x11-themes/kvantum qt5
+sys-firmware/ipxe -ipv6
