@@ -1,0 +1,5 @@
+sys-libs/glibc -multilib
+sys-devel/gcc -multilib
+dev-libs/boehm-gc ABI_X86: -32
+dev-libs/libatomic_ops ABI_X86: -32
+sys-apps/sandbox ABI_X86: -32

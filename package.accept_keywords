@@ -1,0 +1,11 @@
+# kitty and dependencies
+x11-terms/kitty **
+x11-terms/kitty-shell-integration **
+x11-terms/kitty-terminfo **
+
+# steam
+*/*::steam-overlay
+games-util/game-device-udev-rules
+sys-libs/libudev-compat
+
+x11-themes/flat-remix-gtk::guru **

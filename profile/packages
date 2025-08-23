@@ -1,0 +1,14 @@
+# in a module-less setup, this ain't required :)
+-*sys-apps/kmod
+# the heck is that even for? why's it required?
+-*net-mail/mailbase
+# some virtuals i don't need as i only have one of
+# those and don't plan on adding more
+-*virtual/dev-manager
+-*virtual/editor
+-*virtual/libc
+-*virtual/openssh
+-*virtual/package-manager
+-*virtual/pager
+-*virtual/service-manager
+-*virtual/ssh
