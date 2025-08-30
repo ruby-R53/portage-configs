@@ -2,9 +2,6 @@
 -*sys-apps/kmod
 # the heck is that even for? why's it required?
 -*net-mail/mailbase
-# i have cURL already, and this ain't required by
-# anything anymore
--*net-misc/wget
 # some virtuals i don't need as i only have one of
 # those and don't plan on adding more
 -*virtual/dev-manager
