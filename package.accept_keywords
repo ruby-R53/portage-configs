@@ -7,5 +7,3 @@ x11-terms/kitty-terminfo **
 */*::steam-overlay
 games-util/game-device-udev-rules
 sys-libs/libudev-compat
-
-x11-themes/flat-remix-gtk::guru **

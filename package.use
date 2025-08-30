@@ -10,7 +10,7 @@ sys-apps/iproute2 -iptables
 sys-apps/net-tools -arp
 sys-apps/openrc -netifrc -unicode
 sys-apps/pciutils -kmod
-sys-apps/portage -xattr
+sys-apps/portage -rsync-verify -xattr
 sys-apps/shadow -* su
 sys-apps/systemd-utils -kmod udev
 sys-apps/util-linux -cramfs -hardlink -logger -readline -su
@@ -44,6 +44,7 @@ net-fs/cifs-utils -ads
 net-fs/samba -client -regedit -system-mitkrb5
 
 # LLVM/clang stuff
+*/* LLVM_TARGETS: -BPF -NVPTX # BPF and NVidia stuff, don't use any of those
 llvm-core/clang -extra -static-analyzer
 llvm-core/clang-runtime default-lld -sanitize
 llvm-core/clang-common default-lld
@@ -162,9 +163,9 @@ media-sound/mpg123-base -alsa -sdl
 media-sound/mpg123-base -ipv6
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
-media-video/ffmpeg -X fdk -gnutls -iconv hardcoded-tables lame -lcms libdrm -network openh264 opus -pic -svg sdl vpx -vorbis x264 x265 -xvid zlib FFTOOLS: -*
+media-video/ffmpeg -X fdk -gnutls -iconv hardcoded-tables lame -lcms libdrm -network openh264 opus -pic -svg sdl vpx -vorbis x264 x265 -xvid zlib
 media-video/ffmpeg-compat -X -gnutls -lcms -svg -vorbis x264 x265 -xvid
-media-video/mpv -alsa -cli -iconv -uchardet -vulkan
+media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
 media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotify -mp3 -mpeg -png -ssl -svg ogg vpx -x264
@@ -220,6 +221,7 @@ net-misc/freerdp -fuse
 net-misc/iputils -arping
 net-misc/modemmanager -mbim -qmi -qrtr
 net-misc/networkmanager -concheck gnutls -nss -modemmanager -ppp -tools -wext
+net-misc/openssh -ssl
 net-misc/rsync -*
 net-nds/openldap -cleartext -syslog
 net-print/cups -X -dbus
@@ -259,7 +261,7 @@ app-accessibility/at-spi2-core -*
 app-accessibility/speech-dispatcher -*
 app-admin/doas persist
 app-alternatives/sh -bash dash
-app-arch/libarchive bzip2 -e2fsprogs -iconv lzma -xattr zstd
+app-arch/libarchive -*
 app-arch/p7zip -kde
 app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo
@@ -313,3 +315,4 @@ x11-misc/xdg-utils -plasma
 x11-misc/xfe -startup-notification
 x11-themes/kvantum qt5
 sys-firmware/ipxe -ipv6
+app-eselect/eselect-wine -xdg
