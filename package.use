@@ -48,7 +48,7 @@ net-fs/samba -client -regedit -system-mitkrb5
 llvm-core/clang -extra -static-analyzer
 llvm-core/clang-runtime default-lld -sanitize
 llvm-core/clang-common default-lld
-llvm-core/llvm -libffi
+llvm-core/llvm -binutils-plugin -libffi
 llvm-runtimes/compiler-rt -atomic-builtins
 llvm-runtimes/compiler-rt-sanitizers -* cfi
 
@@ -57,7 +57,7 @@ dev-python/numpy -lapack
 dev-python/pillow -lcms -tiff
 dev-python/pycairo X
 dev-python/pyqt5 -* gui widgets PYTHON_TARGETS: python3_13
-# these required by corrscope's GUI
+# these are required by corrscope's GUI
 dev-python/pyqt6 -* gui widgets PYTHON_TARGETS: python3_13
 dev-python/pyqt6-sip PYTHON_TARGETS: python3_13
 
@@ -159,8 +159,7 @@ media-libs/x265 -*
 media-plugins/mpg123-output-plugins -alsa -ipv6 -pulseaudio -sdl
 media-sound/alsa-utils -libsamplerate ncurses
 media-sound/mpg123 -*
-media-sound/mpg123-base -alsa -sdl
-media-sound/mpg123-base -ipv6
+media-sound/mpg123-base -alsa -ipv6 -sdl
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
 media-video/ffmpeg -X fdk -gnutls -iconv hardcoded-tables lame -lcms libdrm -network openh264 opus -pic -svg sdl vpx -vorbis x264 x265 -xvid zlib
@@ -261,7 +260,7 @@ app-accessibility/at-spi2-core -*
 app-accessibility/speech-dispatcher -*
 app-admin/doas persist
 app-alternatives/sh -bash dash
-app-arch/libarchive -*
+app-arch/libarchive -* zstd
 app-arch/p7zip -kde
 app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo
@@ -308,7 +307,7 @@ sci-libs/libqalculate -readline
 virtual/libusb udev
 virtual/perl-libnet -ssl
 virtual/rust profiler
-www-client/chromium -rar -widevine bindist ffmpeg-chromium pulseaudio L10N: -*
+www-client/chromium -rar -widevine bindist bundled-toolchain ffmpeg-chromium pulseaudio L10N: -*
 www-client/w3m -*
 x11-base/xorg-server -minimal udev
 x11-misc/xdg-utils -plasma

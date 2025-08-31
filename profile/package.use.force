@@ -3,6 +3,5 @@ sys-devel/gcc -multilib
 dev-libs/boehm-gc ABI_X86: -32
 dev-libs/libatomic_ops ABI_X86: -32
 sys-apps/sandbox ABI_X86: -32
-dev-qt/qtbase -zstd
 
-*/* LLVM_TARGETS: -AArch64 -ARM -AVR -BPF -Lanai -LoongArch -Mips -MSP430 -NVPTX -PowerPC -RISCV -Sparc -SystemZ -VE -WebAssembly -XCore
+*/* LLVM_TARGETS: -AArch64 -ARM -AVR -BPF -Hexagon -Lanai -LoongArch -Mips -MSP430 -NVPTX -PowerPC -RISCV -Sparc -SystemZ -VE -WebAssembly -XCore
