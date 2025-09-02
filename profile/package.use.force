@@ -1,7 +1,9 @@
+# no need for multilib, at least for now
 sys-libs/glibc -multilib
 sys-devel/gcc -multilib
-dev-libs/boehm-gc ABI_X86: -32
-dev-libs/libatomic_ops ABI_X86: -32
-sys-apps/sandbox ABI_X86: -32
+*/* ABI_X86: -32
 
+# no need for these targets also, except
+# for Chromium, tho' i can just set
+# bundled-toolchain instead
 */* LLVM_TARGETS: -AArch64 -ARM -AVR -BPF -Hexagon -Lanai -LoongArch -Mips -MSP430 -NVPTX -PowerPC -RISCV -Sparc -SystemZ -VE -WebAssembly -XCore
