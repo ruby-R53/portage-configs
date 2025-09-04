@@ -1,0 +1,11 @@
+# swapfile handling, this is the only
+# time where i need to use this thing
+# (shit likes to eat memory even while
+# being compiled, wild)
+pre_src_compile() {
+	swapon /swapfile
+}
+
+post_pkg_postinst() {
+	swapoff /swapfile
+}

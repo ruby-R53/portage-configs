@@ -36,7 +36,6 @@ sys-libs/libnvme -json -ssl
 sys-libs/ncurses -stack-realign
 sys-libs/timezone-data leaps-timezone zic-slim
 sys-libs/zlib minizip
-sys-process/procps -elogind
 sys-process/psmisc -X
 
 # samba and deps for my win11 vm
@@ -46,9 +45,10 @@ net-fs/samba -client -regedit -system-mitkrb5
 # LLVM/clang stuff
 */* LLVM_TARGETS: -BPF -NVPTX # BPF and NVidia stuff, don't use any of those
 llvm-core/clang -extra -static-analyzer
-llvm-core/clang-runtime default-lld -sanitize
+llvm-core/clang-linker-config default-lld
 llvm-core/clang-common default-lld
 llvm-core/llvm -binutils-plugin -libffi
+llvm-runtimes/clang-runtime -compiler-rt default-lld -sanitize
 llvm-runtimes/compiler-rt -atomic-builtins
 llvm-runtimes/compiler-rt-sanitizers -* cfi
 
@@ -136,7 +136,7 @@ media-libs/harfbuzz -graphite icu
 media-libs/imlib2 -shm -tools
 media-libs/lcms -*
 media-libs/libcanberra -alsa pulseaudio
-media-libs/libglvnd X # ???
+media-libs/libglvnd X
 media-libs/libjxl -gdk-pixbuf
 media-libs/libmpeg2 -X -sdl
 media-libs/libopenmpt -*
@@ -162,9 +162,9 @@ media-sound/mpg123 -*
 media-sound/mpg123-base -alsa -ipv6 -sdl
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
-media-video/ffmpeg -X fdk -gnutls -iconv hardcoded-tables lame -lcms libdrm -network openh264 opus -pic -svg sdl vpx -vorbis x264 x265 -xvid zlib
-media-video/ffmpeg-compat -X -gnutls -lcms -svg -vorbis x264 x265 -xvid
-media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
+media-video/ffmpeg -X -gnutls -iconv hardcoded-tables lame -lcms libdrm -network openh264 opus -pic -postproc -svg sdl vpx -vorbis x264 x265 -xvid zlib
+media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 x265 -xvid
+media-video/mpv -X -alsa -cli -iconv -uchardet -vaapi -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
 media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotify -mp3 -mpeg -png -ssl -svg ogg vpx -x264
@@ -172,7 +172,6 @@ media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotif
 # KDEnlive's deps
 media-libs/librubberband -programs
 media-libs/mlt ffmpeg frei0r sdl -rubberband jack qt6 xml
-media-libs/opencv contrib contribdnn features2d
 media-plugins/frei0r-plugins -*
 media-sound/jack2 -classic -tools
 #media-video/ffmpeg X libass
