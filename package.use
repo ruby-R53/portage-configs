@@ -43,7 +43,6 @@ net-fs/cifs-utils -ads
 net-fs/samba -client -regedit -system-mitkrb5
 
 # LLVM/clang stuff
-*/* LLVM_TARGETS: -BPF -NVPTX # BPF and NVidia stuff, don't use any of those
 llvm-core/clang -extra -static-analyzer
 llvm-core/clang-linker-config default-lld
 llvm-core/clang-common default-lld
@@ -147,7 +146,7 @@ media-libs/libsdl2 X -alsa -haptic joystick -pulseaudio
 media-libs/libsndfile -alsa
 media-libs/libva X
 media-libs/libwebp -*
-media-libs/mesa -llvm -proprietary-codecs
+media-libs/mesa -proprietary-codecs
 media-libs/openal -alsa -gui -sdl pipewire
 media-libs/opencv -* contrib contribdnn features2d CPU_FLAGS_X86: avx avx2 f16c fma3 popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3
 media-libs/portaudio cxx
@@ -164,7 +163,7 @@ media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
 media-video/ffmpeg -X -gnutls -iconv hardcoded-tables lame -lcms libdrm -network openh264 opus -pic -postproc -svg sdl vpx -vorbis x264 x265 -xvid zlib
 media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 x265 -xvid
-media-video/mpv -X -alsa -cli -iconv -uchardet -vaapi -vulkan
+media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
 media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotify -mp3 -mpeg -png -ssl -svg ogg vpx -x264
@@ -231,7 +230,7 @@ dev-libs/expat -*
 dev-libs/glib -dbus -elf -xattr
 dev-libs/gmp -cpudetection
 dev-libs/libffi -*
-dev-libs/libpcre2 jit -readline unicode
+dev-libs/libpcre2 jit -pcre32 -readline unicode
 dev-libs/libtomcrypt -* gmp
 dev-libs/libusb udev
 dev-libs/libxml2 -ftp -readline icu
@@ -287,7 +286,7 @@ dev-db/sqlite -icu -readline
 dev-debug/gdb -server
 dev-java/openjdk -jbootstrap
 dev-lang/lua -deprecated -readline
-dev-lang/python ncurses -sqlite
+dev-lang/python ncurses -ensurepip -sqlite
 dev-lang/rust profiler mrustc-bootstrap
 dev-lang/rust-bin profiler
 dev-perl/libwww-perl -ssl
