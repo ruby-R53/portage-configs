@@ -8,7 +8,7 @@ sys-apps/groff -X
 sys-apps/hwloc -*
 sys-apps/iproute2 -iptables
 sys-apps/net-tools -arp
-sys-apps/openrc -netifrc -unicode
+sys-apps/openrc -netifrc
 sys-apps/pciutils -kmod
 sys-apps/portage -rsync-verify -xattr
 sys-apps/shadow -* su
@@ -43,9 +43,10 @@ net-fs/cifs-utils -ads
 net-fs/samba -client -regedit -system-mitkrb5
 
 # LLVM/clang stuff
-llvm-core/clang -extra -static-analyzer
+llvm-core/clang -extra -static-analyzer LLVM_TARGETS: -BPF -NVPTX
 llvm-core/clang-linker-config default-lld
 llvm-core/clang-common default-lld
+llvm-core/lld LLVM_TARGETS: -BPF -NVPTX
 llvm-core/llvm -binutils-plugin -libffi
 llvm-runtimes/clang-runtime -compiler-rt default-lld -sanitize
 llvm-runtimes/compiler-rt -atomic-builtins
@@ -75,9 +76,8 @@ media-libs/libao -alsa pulseaudio
 dev-qt/designer -declarative
 dev-qt/qt5compat icu qml
 dev-qt/qtbase -dbus -network -sql -ssl -libinput -vulkan
-dev-qt/qtcore old-kernel
 dev-qt/qtdeclarative network -sql -ssl -svg
-dev-qt/qtgui libinput -accessibility udev
+dev-qt/qtgui dbus -libinput -accessibility udev
 dev-qt/qtmultimedia -dbus -pipewire #qml
 #dev-qt/qtpositioning qml
 dev-qt/qtsql sqlite
@@ -128,7 +128,7 @@ media-gfx/exiv2 png xmp
 media-gfx/feh -*
 media-gfx/qimgv exif video
 media-libs/flac -ogg
-media-libs/freetype -X -svg
+media-libs/freetype -X harfbuzz -svg
 media-libs/gst-plugins-bad -* orc vaapi
 media-libs/gst-plugins-base -* orc
 media-libs/harfbuzz -graphite icu
@@ -212,7 +212,7 @@ net-libs/nodejs inspector -npm -snapshot
 net-libs/webkit-gtk -lcms -pdf
 net-libs/zeromq -*
 net-misc/chrony -* caps cmdmon ntp rtc
-net-misc/curl -* adns http2 openssl ssl CURL_SSL: openssl
+net-misc/curl -* http2 openssl ssl CURL_SSL: openssl
 net-misc/dhcpcd udev
 net-misc/freerdp -fuse
 net-misc/iputils -arping

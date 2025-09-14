@@ -2,3 +2,6 @@
 sys-libs/glibc -multilib
 sys-devel/gcc -multilib
 */* ABI_X86: -32
+
+llvm-core/clang LLVM_TARGETS: -AArch64 -ARM -AVR -BPF -Hexagon -Lanai -LoongArch -MSP430 -Mips -NVPTX -PowerPC -RISCV -Sparc -SystemZ -VE -WebAssembly -XCore
+llvm-core/lld LLVM_TARGETS: -AArch64 -ARM -AVR -BPF -Hexagon -Lanai -LoongArch -MSP430 -Mips -NVPTX -PowerPC -RISCV -Sparc -SystemZ -VE -WebAssembly -XCore
