@@ -43,14 +43,15 @@ net-fs/cifs-utils -ads
 net-fs/samba -client -regedit -system-mitkrb5
 
 # LLVM/clang stuff
+llvm-core/* default-lld
+llvm-runtimes/* default-lld
 llvm-core/clang -extra -static-analyzer LLVM_TARGETS: -BPF -NVPTX
-llvm-core/clang-linker-config default-lld
-llvm-core/clang-common default-lld
+llvm-core/clang-linker-config
 llvm-core/lld LLVM_TARGETS: -BPF -NVPTX
 llvm-core/llvm -binutils-plugin -libffi
-llvm-runtimes/clang-runtime -compiler-rt default-lld -sanitize
+llvm-runtimes/clang-runtime -compiler-rt -sanitize
 llvm-runtimes/compiler-rt -atomic-builtins
-llvm-runtimes/compiler-rt-sanitizers -* cfi
+llvm-runtimes/compiler-rt-sanitizers -* profile
 
 # python stuff
 dev-python/numpy -lapack
@@ -59,14 +60,13 @@ dev-python/pycairo X
 dev-python/pyqt5 -* gui widgets PYTHON_TARGETS: python3_13
 # these are required by corrscope's GUI
 dev-python/pyqt6 -* gui widgets PYTHON_TARGETS: python3_13
-dev-python/pyqt6-sip PYTHON_TARGETS: python3_13
 
 # required for nodejs which's required by chromium
 # no USE flags required by any package however
 net-libs/ngtcp2 -*
 
 # not using any Mozilla packages, so why...
-media-libs/openh264 -plugin
+#media-libs/openh264 -plugin
 
 # required for vgmplay
 media-libs/libao -alsa pulseaudio
@@ -75,13 +75,13 @@ media-libs/libao -alsa pulseaudio
 */* -qml # only some will require it
 dev-qt/designer -declarative
 dev-qt/qt5compat icu qml
-dev-qt/qtbase -dbus -network -sql -ssl -libinput -vulkan
+dev-qt/qtbase -network -sql -ssl -libinput -vulkan
 dev-qt/qtdeclarative network -sql -ssl -svg
-dev-qt/qtgui dbus -libinput -accessibility udev
-dev-qt/qtmultimedia -dbus -pipewire #qml
+dev-qt/qtgui dbus -libinput -accessibility -png udev
+dev-qt/qtmultimedia -pipewire #qml
 #dev-qt/qtpositioning qml
 dev-qt/qtsql sqlite
-dev-qt/qttools -assistant -qdbus -vulkan
+dev-qt/qttools -assistant -qdbus -vulkan -widgets
 dev-qt/qtwebengine -vaapi -vulkan widgets
 
 # KDE/Plasma stuff
@@ -145,6 +145,7 @@ media-libs/libsdl X -alsa joystick
 media-libs/libsdl2 X -alsa -haptic joystick -pulseaudio
 media-libs/libsndfile -alsa
 media-libs/libva X
+media-libs/libvpx postproc
 media-libs/libwebp -*
 media-libs/mesa -proprietary-codecs
 media-libs/openal -alsa -gui -sdl pipewire
@@ -208,7 +209,7 @@ net-im/discord L10N: -* en-US
 net-im/vesktop-bin L10N: -* en-US
 net-libs/gnutls -* pkcs11 tools
 net-libs/libpsl -icu -idn
-net-libs/nodejs inspector -npm -snapshot
+net-libs/nodejs -* CPU_FLAGS_X86: sse2
 net-libs/webkit-gtk -lcms -pdf
 net-libs/zeromq -*
 net-misc/chrony -* caps cmdmon ntp rtc
@@ -221,14 +222,15 @@ net-misc/networkmanager -concheck gnutls -nss -modemmanager -ppp -tools -wext
 net-misc/openssh -ssl
 net-misc/rsync -*
 net-nds/openldap -cleartext -syslog
-net-print/cups -X -dbus
+net-print/cups -X
 
 # libraries
 dev-libs/boost -context -icu -stacktrace
 dev-libs/elfutils -utils
 dev-libs/expat -*
-dev-libs/glib -dbus -elf -xattr
+dev-libs/glib -elf -xattr
 dev-libs/gmp -cpudetection
+dev-libs/libevent -ssl
 dev-libs/libffi -*
 dev-libs/libpcre2 jit -pcre32 -readline unicode
 dev-libs/libtomcrypt -* gmp
@@ -263,18 +265,17 @@ app-arch/p7zip -kde
 app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo
 app-crypt/gcr -* gtk
-app-crypt/gnupg -readline -tofu
+app-crypt/gnupg -*
 #app-crypt/gpgme cxx qt5
 app-crypt/libsecret -*
 app-crypt/p11-kit -*
-app-crypt/pinentry -X -gtk
+app-crypt/pinentry -*
 app-crypt/qca qt6
 app-crypt/rhash -ssl
 app-editors/neovim -nvimpager
 app-editors/vim -minimal -sound terminal
 app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp virgl
-app-emulation/vice -flac -gif gtk -ogg -png -sdl
-app-emulation/wine-vanilla -alsa -dbus -gecko -gstreamer -mono pulseaudio -sdl -ssl wow64
+app-emulation/wine-vanilla -alsa -gecko -gstreamer -mono pulseaudio -sdl -ssl wow64
 app-emulation/winetricks -kde
 app-eselect/eselect-repository -git
 app-forensics/yara -*
@@ -286,11 +287,11 @@ dev-db/sqlite -icu -readline
 dev-debug/gdb -server
 dev-java/openjdk -jbootstrap
 dev-lang/lua -deprecated -readline
-dev-lang/python ncurses -ensurepip -sqlite
+dev-lang/python -ensurepip ncurses sqlite
 dev-lang/rust profiler mrustc-bootstrap
 dev-lang/rust-bin profiler
 dev-perl/libwww-perl -ssl
-dev-qt/qtwidgets -X
+dev-qt/qtwidgets -*
 dev-util/mingw64-toolchain ABI_X86: 32
 dev-vcs/git -iconv -webdav
 dev-vcs/subversion -*
@@ -307,9 +308,10 @@ virtual/perl-libnet -ssl
 virtual/rust profiler
 www-client/chromium -rar -widevine bindist bundled-toolchain ffmpeg-chromium pulseaudio L10N: -*
 www-client/w3m -*
-x11-base/xorg-server -minimal udev
+x11-base/xorg-server -minimal xvfb udev
 x11-misc/xdg-utils -plasma
 x11-misc/xfe -startup-notification
 x11-themes/kvantum qt5
 sys-firmware/ipxe -ipv6
 app-eselect/eselect-wine -xdg
+www-client/firefox hwaccel openh264 pulseaudio system-pipewire

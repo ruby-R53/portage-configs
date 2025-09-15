@@ -18,3 +18,7 @@ sys-kernel/linux-headers-6.16
 # of that and don't plan on using anything
 # else, so why
 app-eselect/eselect-pinentry-0.7.4
+
+# don't wanna use binaries, so no need for
+# that
+app-portage/getuto-1.15
