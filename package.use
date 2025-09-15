@@ -51,13 +51,12 @@ llvm-core/lld LLVM_TARGETS: -BPF -NVPTX
 llvm-core/llvm -binutils-plugin -libffi
 llvm-runtimes/clang-runtime -compiler-rt -sanitize
 llvm-runtimes/compiler-rt -atomic-builtins
-llvm-runtimes/compiler-rt-sanitizers -* profile
+llvm-runtimes/compiler-rt-sanitizers -* cfi
 
 # python stuff
 dev-python/numpy -lapack
-dev-python/pillow -lcms -tiff
+dev-python/pillow -jpeg -lcms -tiff
 dev-python/pycairo X
-dev-python/pyqt5 -* gui widgets PYTHON_TARGETS: python3_13
 # these are required by corrscope's GUI
 dev-python/pyqt6 -* gui widgets PYTHON_TARGETS: python3_13
 
@@ -66,7 +65,7 @@ dev-python/pyqt6 -* gui widgets PYTHON_TARGETS: python3_13
 net-libs/ngtcp2 -*
 
 # not using any Mozilla packages, so why...
-#media-libs/openh264 -plugin
+media-libs/openh264 -plugin
 
 # required for vgmplay
 media-libs/libao -alsa pulseaudio
@@ -145,7 +144,6 @@ media-libs/libsdl X -alsa joystick
 media-libs/libsdl2 X -alsa -haptic joystick -pulseaudio
 media-libs/libsndfile -alsa
 media-libs/libva X
-media-libs/libvpx postproc
 media-libs/libwebp -*
 media-libs/mesa -proprietary-codecs
 media-libs/openal -alsa -gui -sdl pipewire
@@ -209,7 +207,7 @@ net-im/discord L10N: -* en-US
 net-im/vesktop-bin L10N: -* en-US
 net-libs/gnutls -* pkcs11 tools
 net-libs/libpsl -icu -idn
-net-libs/nodejs -* CPU_FLAGS_X86: sse2
+net-libs/nodejs inspector -npm -snapshot
 net-libs/webkit-gtk -lcms -pdf
 net-libs/zeromq -*
 net-misc/chrony -* caps cmdmon ntp rtc
@@ -287,7 +285,7 @@ dev-db/sqlite -icu -readline
 dev-debug/gdb -server
 dev-java/openjdk -jbootstrap
 dev-lang/lua -deprecated -readline
-dev-lang/python -ensurepip ncurses sqlite
+dev-lang/python -ensurepip ncurses
 dev-lang/rust profiler mrustc-bootstrap
 dev-lang/rust-bin profiler
 dev-perl/libwww-perl -ssl
@@ -306,12 +304,11 @@ sci-libs/libqalculate -readline
 virtual/libusb udev
 virtual/perl-libnet -ssl
 virtual/rust profiler
-www-client/chromium -rar -widevine bindist bundled-toolchain ffmpeg-chromium pulseaudio L10N: -*
+www-client/chromium -rar -widevine bindist ffmpeg-chromium pulseaudio L10N: -*
 www-client/w3m -*
-x11-base/xorg-server -minimal xvfb udev
+x11-base/xorg-server -minimal udev
 x11-misc/xdg-utils -plasma
 x11-misc/xfe -startup-notification
 x11-themes/kvantum qt5
 sys-firmware/ipxe -ipv6
 app-eselect/eselect-wine -xdg
-www-client/firefox hwaccel openh264 pulseaudio system-pipewire
