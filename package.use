@@ -85,6 +85,9 @@ dev-qt/qtwebengine -vaapi -vulkan widgets
 
 # KDE/Plasma stuff
 kde-apps/akonadi -kaccounts sqlite
+kde-apps/ark zip
+kde-apps/dolphin -activities
+kde-apps/gwenview -X -activities -mpris
 kde-apps/kio-extras -* phonon
 kde-apps/libkexiv2 -xmp
 kde-apps/libkleo -fancyviewer
@@ -106,6 +109,7 @@ kde-frameworks/kwindowsystem X wayland
 kde-frameworks/prison qml
 kde-frameworks/purpose -kaccounts
 kde-frameworks/sonnet -hunspell qml
+kde-misc/kdeconnect -X
 kde-plasma/breeze qt5
 kde-plasma/kdeplasma-addons -alternate-calendar
 kde-plasma/kdesu-gui -X
@@ -160,7 +164,7 @@ media-sound/mpg123 -*
 media-sound/mpg123-base -alsa -ipv6 -sdl
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
-media-video/ffmpeg -X -gnutls -iconv hardcoded-tables lame -lcms libdrm -network openh264 opus -pic -postproc -svg sdl vpx -vorbis x264 x265 -xvid zlib
+media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 x265 zlib 
 media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 x265 -xvid
 media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
@@ -243,6 +247,9 @@ dev-libs/qtkeychain qt5
 dev-libs/quazip qt5
 dev-libs/serd -tools
 dev-libs/simdjson -all-impls
+
+# X11
+x11-base/xorg-server -minimal udev
 x11-libs/cairo X
 x11-libs/libSM -uuid
 x11-libs/libdrm VIDEO_CARDS: radeon
@@ -250,10 +257,13 @@ x11-libs/libinput libei
 x11-libs/libxkbcommon X
 x11-libs/pango -X
 x11-libs/vte -icu
+x11-misc/xdg-utils -plasma
+x11-misc/xfe -startup-notification
+x11-themes/kvantum qt5
 
 # miscellaneous, to be categorized
 */* pgo # MORE OPTIMIZATIONS!!
-=dev-lang/python-3.14.0_rc2 -pgo # this one still fucking breaks with pgo enabled
+#app-crypt/gpgme cxx qt5
 app-accessibility/at-spi2-core -*
 app-accessibility/speech-dispatcher -*
 app-admin/doas persist
@@ -264,7 +274,6 @@ app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo
 app-crypt/gcr -* gtk
 app-crypt/gnupg -*
-#app-crypt/gpgme cxx qt5
 app-crypt/libsecret -*
 app-crypt/p11-kit -*
 app-crypt/pinentry -*
@@ -276,6 +285,7 @@ app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-
 app-emulation/wine-vanilla -alsa -gecko -gstreamer -mono pulseaudio -sdl -ssl wow64
 app-emulation/winetricks -kde
 app-eselect/eselect-repository -git
+app-eselect/eselect-wine -xdg
 app-forensics/yara -*
 app-portage/portage-utils -*
 app-shells/bash -net
@@ -295,20 +305,11 @@ dev-vcs/git -iconv -webdav
 dev-vcs/subversion -*
 gnome-base/gnome-keyring -ssh-agent
 gui-libs/gtk -vulkan
-kde-apps/ark zip
-kde-apps/dolphin -activities
-kde-apps/gwenview -X -activities -mpris
-kde-misc/kdeconnect -X
 sci-libs/gsl -deprecated
 sci-libs/libqalculate -readline
+sys-firmware/ipxe -ipv6
 virtual/libusb udev
 virtual/perl-libnet -ssl
 virtual/rust profiler
-www-client/chromium -rar -widevine bindist ffmpeg-chromium pulseaudio L10N: -*
+www-client/chromium -hangouts -rar -widevine pulseaudio L10N: -*
 www-client/w3m -*
-x11-base/xorg-server -minimal udev
-x11-misc/xdg-utils -plasma
-x11-misc/xfe -startup-notification
-x11-themes/kvantum qt5
-sys-firmware/ipxe -ipv6
-app-eselect/eselect-wine -xdg
