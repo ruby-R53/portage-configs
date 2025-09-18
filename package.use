@@ -62,7 +62,7 @@ dev-python/pyqt6 -* gui widgets PYTHON_TARGETS: python3_13
 
 # required for nodejs which's required by chromium
 # no USE flags required by any package however
-net-libs/ngtcp2 -*
+net-libs/ngtcp2 -* gnutls
 
 # not using any Mozilla packages, so why...
 media-libs/openh264 -plugin
