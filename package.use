@@ -1,6 +1,6 @@
 # system stuff, all the very essentials
 */* -cet # intel-specific, i'm an AMD user!
-sys-apps/coreutils -* xattr
+sys-apps/coreutils -*
 sys-apps/ethtool -netlink
 sys-apps/gawk -mpfr -readline
 sys-apps/grep -egrep-fgrep
@@ -214,7 +214,7 @@ net-libs/libpsl -icu -idn
 net-libs/nodejs inspector -npm -snapshot
 net-libs/webkit-gtk -lcms -pdf
 net-libs/zeromq -*
-net-misc/chrony -* caps cmdmon ntp rtc
+net-misc/chrony -* caps rtc
 net-misc/curl -* http2 openssl ssl CURL_SSL: openssl
 net-misc/dhcpcd udev
 net-misc/freerdp -fuse
@@ -282,7 +282,7 @@ app-crypt/rhash -ssl
 app-editors/neovim -nvimpager
 app-editors/vim -minimal -sound terminal
 app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp virgl
-app-emulation/wine-vanilla -alsa -gecko -gstreamer -mono pulseaudio -sdl -ssl wow64
+app-emulation/wine-vanilla -gecko -fontconfig -gstreamer -mono -sdl -vulkan wow64
 app-emulation/winetricks -kde
 app-eselect/eselect-repository -git
 app-eselect/eselect-wine -xdg
@@ -301,7 +301,7 @@ dev-lang/rust-bin profiler
 dev-perl/libwww-perl -ssl
 dev-qt/qtwidgets -*
 dev-util/mingw64-toolchain ABI_X86: 32
-dev-vcs/git -iconv -webdav
+dev-vcs/git -gpg -iconv -webdav
 dev-vcs/subversion -*
 gnome-base/gnome-keyring -ssh-agent
 gui-libs/gtk -vulkan
