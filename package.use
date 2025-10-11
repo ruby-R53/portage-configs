@@ -78,50 +78,9 @@ dev-qt/qtbase -network -sql -ssl -libinput -vulkan
 dev-qt/qtdeclarative network -sql -ssl -svg
 dev-qt/qtgui dbus -libinput -accessibility -png udev
 dev-qt/qtmultimedia -pipewire #qml
-#dev-qt/qtpositioning qml
 dev-qt/qtsql sqlite
 dev-qt/qttools -assistant -qdbus -vulkan -widgets
 dev-qt/qtwebengine -vaapi -vulkan widgets
-
-# KDE/Plasma stuff
-kde-apps/akonadi -kaccounts sqlite
-kde-apps/ark zip
-kde-apps/dolphin -activities
-kde-apps/gwenview -X -activities -mpris
-kde-apps/kio-extras -* phonon
-kde-apps/libkexiv2 -xmp
-kde-apps/libkleo -fancyviewer
-kde-apps/thumbnailers -pdf
-kde-frameworks/kconfig qml
-kde-frameworks/kconfigwidgets -man
-kde-frameworks/kcrash -X
-kde-frameworks/kded -man
-kde-frameworks/kdesu -X
-kde-frameworks/kfilemetadata -*
-kde-frameworks/kguiaddons wayland
-kde-frameworks/kidletime wayland
-kde-frameworks/kinit -man
-kde-frameworks/kio -kwallet
-kde-frameworks/krunner -activities
-kde-frameworks/kservice -man
-kde-frameworks/ktexteditor -editorconfig
-kde-frameworks/kwindowsystem X wayland
-kde-frameworks/prison qml
-kde-frameworks/purpose -kaccounts
-kde-frameworks/sonnet -hunspell qml
-kde-misc/kdeconnect -X
-kde-plasma/breeze qt5
-kde-plasma/kdeplasma-addons -alternate-calendar
-kde-plasma/kdesu-gui -X
-kde-plasma/kwin lock
-kde-plasma/oxygen -X
-kde-plasma/plasma-desktop -kaccounts -sdl
-kde-plasma/plasma-integration qt5
-kde-plasma/plasma-workspace -calendar -fontconfig -ksysguard -wallpaper-metadata
-kde-plasma/plasma5support -activities
-kde-plasma/powerdevil -wireless
-media-libs/phonon qt6
-media-libs/phonon-vlc qt6
 
 # media
 media-fonts/* -X
@@ -160,23 +119,17 @@ media-libs/x264 -interlaced
 media-libs/x265 -*
 media-plugins/mpg123-output-plugins -alsa -ipv6 -pulseaudio -sdl
 media-sound/alsa-utils -libsamplerate
+media-sound/lame -*
 media-sound/mpg123 -*
 media-sound/mpg123-base -alsa -ipv6 -sdl
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
-media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -vulkan -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 zlib 
+media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -vulkan -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 zlib
 media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 -xvid
 media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
 media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotify -mp3 -mpeg -png -ssl -svg ogg vpx -x264
-
-# KDEnlive's deps
-media-libs/librubberband -programs
-media-libs/mlt ffmpeg frei0r sdl -rubberband jack qt6 xml
-media-plugins/frei0r-plugins -*
-media-sound/jack2 -classic -tools
-#media-video/ffmpeg X libass
 
 # rubylang
 dev-libs/gjs -readline
@@ -200,11 +153,6 @@ dev-ruby/strscan RUBY_TARGETS: ruby31
 dev-ruby/test-unit RUBY_TARGETS: ruby31
 virtual/ruby-ssl RUBY_TARGETS: ruby31
 virtual/rubygems RUBY_TARGETS: ruby31
-
-# audacity and deps
-media-sound/audacity -flac -ladspa -lv2 -ogg -portmixer -vorbis
-media-sound/lame -frontend
-x11-libs/wxGTK -* X
 
 # networking stuff
 net-im/discord L10N: -* en-US

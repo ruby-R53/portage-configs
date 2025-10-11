@@ -1,0 +1,54 @@
+# Qt stuff
+dev-qt/qtpositioning qml
+
+# KDE/Plasma stuff
+kde-apps/akonadi -kaccounts sqlite
+kde-apps/ark zip
+kde-apps/dolphin -activities
+kde-apps/gwenview -X -activities -mpris
+kde-apps/kio-extras -* phonon
+kde-apps/libkexiv2 -xmp
+kde-apps/libkleo -fancyviewer
+kde-apps/thumbnailers -pdf
+kde-frameworks/kconfig qml
+kde-frameworks/kconfigwidgets -man
+kde-frameworks/kcrash -X
+kde-frameworks/kded -man
+kde-frameworks/kdesu -X
+kde-frameworks/kfilemetadata -*
+kde-frameworks/kguiaddons wayland
+kde-frameworks/kidletime wayland
+kde-frameworks/kinit -man
+kde-frameworks/kio -kwallet
+kde-frameworks/krunner -activities
+kde-frameworks/kservice -man
+kde-frameworks/ktexteditor -editorconfig
+kde-frameworks/kwindowsystem X wayland
+kde-frameworks/prison qml
+kde-frameworks/purpose -kaccounts
+kde-frameworks/sonnet -hunspell qml
+kde-misc/kdeconnect -X
+kde-plasma/breeze qt5
+kde-plasma/kdeplasma-addons -alternate-calendar
+kde-plasma/kdesu-gui -X
+kde-plasma/kwin lock
+kde-plasma/oxygen -X
+kde-plasma/plasma-desktop -kaccounts -sdl
+kde-plasma/plasma-integration qt5
+kde-plasma/plasma-workspace -calendar -fontconfig -ksysguard -wallpaper-metadata
+kde-plasma/plasma5support -activities
+kde-plasma/powerdevil -wireless
+media-libs/phonon qt6
+media-libs/phonon-vlc qt6
+
+# KDEnlive's deps
+media-libs/librubberband -programs
+media-libs/mlt ffmpeg frei0r sdl -rubberband jack qt6 xml
+media-plugins/frei0r-plugins -*
+media-sound/jack2 -classic -tools
+media-video/ffmpeg X libass
+
+# audacity and deps
+media-sound/audacity -flac -ladspa -lv2 -ogg -portmixer -vorbis
+media-sound/lame -frontend
+x11-libs/wxGTK -* X
