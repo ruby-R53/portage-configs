@@ -135,7 +135,7 @@ media-libs/freetype -X harfbuzz -svg
 media-libs/gst-plugins-bad -* orc vaapi
 media-libs/gst-plugins-base -* orc
 media-libs/harfbuzz -graphite icu
-media-libs/imlib2 -shm -tools
+media-libs/imlib2 -* X filters jpeg png text CPU_FLAGS_X86: sse2
 media-libs/lcms -*
 media-libs/libcanberra -alsa pulseaudio
 media-libs/libglvnd X
@@ -159,13 +159,13 @@ media-libs/vulkan-loader X
 media-libs/x264 -interlaced
 media-libs/x265 -*
 media-plugins/mpg123-output-plugins -alsa -ipv6 -pulseaudio -sdl
-media-sound/alsa-utils -libsamplerate ncurses
+media-sound/alsa-utils -libsamplerate
 media-sound/mpg123 -*
 media-sound/mpg123-base -alsa -ipv6 -sdl
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
-media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 x265 zlib 
-media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 x265 -xvid
+media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -vulkan -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 zlib 
+media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 -xvid
 media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
@@ -282,7 +282,7 @@ app-crypt/rhash -ssl
 app-editors/neovim -nvimpager
 app-editors/vim -minimal -sound terminal
 app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp virgl
-app-emulation/wine-vanilla -gecko -fontconfig -gstreamer -mono -sdl -vulkan wow64
+app-emulation/wine-vanilla -gecko -fontconfig -gstreamer -mono -sdl wow64
 app-emulation/winetricks -kde
 app-eselect/eselect-repository -git
 app-eselect/eselect-wine -xdg
