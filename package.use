@@ -216,7 +216,7 @@ app-accessibility/at-spi2-core -*
 app-accessibility/speech-dispatcher -*
 app-admin/doas persist
 app-alternatives/sh -bash dash
-app-arch/libarchive -* zstd
+app-arch/libarchive -*
 app-arch/p7zip -kde
 app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo

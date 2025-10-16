@@ -1,8 +1,12 @@
+# let's try building it without dbus,
+# what could go wrong?
+EXTRA_ECONF="use_dbus=false"
+
 # swapfile handling, this is the only
 # time where i need to use this thing
 # (shit likes to eat memory even while
 # being compiled, wild)
-pre_src_compile() {
+pre_pkg_setup() {
 	swapon /swapfile
 }
 

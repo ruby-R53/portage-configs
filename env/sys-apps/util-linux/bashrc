@@ -1,0 +1,5 @@
+# disable even more utilities that i'll never use
+EXTRA_ECONF="
+	--disable-hwclock --disable-zramctl --disable-bfs
+	--disable-minix --disable-wdctl --disable-rfkill 
+	--disable-bash-completion"
