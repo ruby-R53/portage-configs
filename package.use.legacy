@@ -52,3 +52,6 @@ media-video/ffmpeg X libass
 media-sound/audacity -flac -ladspa -lv2 -ogg -portmixer -vorbis
 media-sound/lame -frontend
 x11-libs/wxGTK -* X
+
+# and more
+app-crypt/gpgme cxx qt5

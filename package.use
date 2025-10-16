@@ -211,7 +211,6 @@ x11-themes/kvantum qt5
 
 # miscellaneous, to be categorized
 */* pgo # MORE OPTIMIZATIONS!!
-#app-crypt/gpgme cxx qt5
 app-accessibility/at-spi2-core -*
 app-accessibility/speech-dispatcher -*
 app-admin/doas persist
@@ -239,6 +238,7 @@ app-portage/portage-utils -*
 app-shells/bash -net
 app-text/poppler -lcms -nss -utils
 app-text/xmlto text
+dev-cpp/eigen -opengl
 dev-db/sqlite -icu -readline
 dev-debug/gdb -server
 dev-java/openjdk -jbootstrap
