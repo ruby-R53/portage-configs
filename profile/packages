@@ -18,3 +18,7 @@
 # using cURL now, a faster and superior
 # alternative to it
 -*net-misc/wget
+
+# i don't even have support for that enabled
+# in the kernel xd
+-*sys-fs/e2fsprogs

@@ -1,2 +1,3 @@
 -vanilla
 -multilib
+-llvm_slot_21

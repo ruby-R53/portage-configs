@@ -1,5 +1,7 @@
+# local flags, applied to all packages
+*/* pgo  # MORE OPTIMIZATIONS!!
+*/* -cet # intel-specific, i am team RED!
 # system stuff, all the very essentials
-*/* -cet # intel-specific, i'm an AMD user!
 sys-apps/coreutils -*
 sys-apps/ethtool -netlink
 sys-apps/gawk -mpfr -readline
@@ -58,11 +60,11 @@ dev-python/numpy -lapack
 dev-python/pillow -jpeg -lcms -tiff
 dev-python/pycairo X
 # these are required by corrscope's GUI
-dev-python/pyqt6 -* gui widgets PYTHON_TARGETS: python3_13
+dev-python/pyqt6 -* gui network opengl widgets PYTHON_TARGETS: python3_13
 
 # required for nodejs which's required by chromium
 # no USE flags required by any package however
-net-libs/ngtcp2 -* gnutls
+net-libs/ngtcp2 -*
 
 # not using any Mozilla packages, so why...
 media-libs/openh264 -plugin
@@ -74,12 +76,12 @@ media-libs/libao -alsa pulseaudio
 */* -qml # only some will require it
 dev-qt/designer -declarative
 dev-qt/qt5compat icu qml
-dev-qt/qtbase -network -sql -ssl -libinput -vulkan
+dev-qt/qtbase dbus -sql -ssl -libinput -vulkan
 dev-qt/qtdeclarative network -sql -ssl -svg
-dev-qt/qtgui dbus -libinput -accessibility -png udev
+dev-qt/qtgui dbus -libinput -accessibility -png
 dev-qt/qtmultimedia -pipewire #qml
 dev-qt/qtsql sqlite
-dev-qt/qttools -assistant -qdbus -vulkan -widgets
+dev-qt/qttools -assistant -qdbus -vulkan -widgets LLVM_SLOT: -20 21
 dev-qt/qtwebengine -vaapi -vulkan widgets
 
 # media
@@ -88,6 +90,7 @@ media-fonts/noto cjk
 media-fonts/terminus-font -psf
 media-gfx/exiv2 png xmp
 media-gfx/feh -*
+media-gfx/fontforge -readline
 media-gfx/qimgv exif video
 media-libs/flac -ogg
 media-libs/freetype -X harfbuzz -svg
@@ -103,13 +106,13 @@ media-libs/libmpeg2 -X -sdl
 media-libs/libopenmpt -*
 media-libs/libplacebo -lcms -shaderc -vulkan
 media-libs/libpulse -X
-media-libs/libsdl X -alsa joystick
-media-libs/libsdl2 X -alsa -haptic joystick -pulseaudio
+media-libs/libsdl X joystick -alsa
+media-libs/libsdl2 X joystick -alsa -haptic -pulseaudio
 media-libs/libsndfile -alsa
 media-libs/libva X
 media-libs/libwebp -*
-media-libs/mesa -proprietary-codecs
-media-libs/openal -alsa -gui -sdl pipewire
+media-libs/mesa -proprietary-codecs LLVM_SLOT: -20 21
+media-libs/openal alsa -gui -sdl -pipewire
 media-libs/opencv -* contrib contribdnn features2d CPU_FLAGS_X86: avx avx2 f16c fma3 popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3
 media-libs/portaudio cxx
 media-libs/sdl2-image -*
@@ -130,29 +133,6 @@ media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
 media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotify -mp3 -mpeg -png -ssl -svg ogg vpx -x264
-
-# rubylang
-dev-libs/gjs -readline
-dev-ruby/bundler RUBY_TARGETS: ruby31
-dev-ruby/irb RUBY_TARGETS: ruby31
-dev-ruby/json RUBY_TARGETS: ruby31
-dev-ruby/logger RUBY_TARGETS: ruby31
-dev-ruby/minitest RUBY_TARGETS: ruby31
-dev-ruby/power_assert RUBY_TARGETS: ruby31
-dev-ruby/psych RUBY_TARGETS: ruby31
-dev-ruby/racc RUBY_TARGETS: ruby31
-dev-ruby/rake RUBY_TARGETS: ruby31
-dev-ruby/rbs RUBY_TARGETS: ruby31
-dev-ruby/rdoc RUBY_TARGETS: ruby31
-dev-ruby/reline RUBY_TARGETS: ruby31
-dev-ruby/rexml RUBY_TARGETS: ruby31
-dev-ruby/rss RUBY_TARGETS: ruby31
-dev-ruby/rubygems RUBY_TARGETS: ruby31
-dev-ruby/stringio RUBY_TARGETS: ruby31
-dev-ruby/strscan RUBY_TARGETS: ruby31
-dev-ruby/test-unit RUBY_TARGETS: ruby31
-virtual/ruby-ssl RUBY_TARGETS: ruby31
-virtual/rubygems RUBY_TARGETS: ruby31
 
 # networking stuff
 net-im/discord L10N: -* en-US
@@ -182,6 +162,7 @@ dev-libs/glib -elf -xattr
 dev-libs/gmp -cpudetection
 dev-libs/libevent -ssl
 dev-libs/libffi -*
+dev-libs/libgit2 -ssh
 dev-libs/libpcre2 jit -pcre32 -readline unicode
 dev-libs/libtomcrypt -* gmp
 dev-libs/libusb udev
@@ -198,29 +179,30 @@ dev-libs/simdjson -all-impls
 
 # X11
 x11-base/xorg-server -minimal udev
+x11-libs/agg -gpc
 x11-libs/cairo X
 x11-libs/libSM -uuid
 x11-libs/libdrm VIDEO_CARDS: radeon
 x11-libs/libinput libei
 x11-libs/libxkbcommon X
-x11-libs/pango -X
+x11-libs/pango X
 x11-libs/vte -icu
 x11-misc/xdg-utils -plasma
 x11-misc/xfe -startup-notification
 x11-themes/kvantum qt5
+x11-wm/fvwm3 -go
 
 # miscellaneous, to be categorized
-*/* pgo # MORE OPTIMIZATIONS!!
 app-accessibility/at-spi2-core -*
 app-accessibility/speech-dispatcher -*
 app-admin/doas persist
 app-alternatives/sh -bash dash
-app-arch/libarchive -*
+app-arch/libarchive -* bzip2 zstd
 app-arch/p7zip -kde
 app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo
 app-crypt/gcr -* gtk
-app-crypt/gnupg -*
+app-crypt/gnupg -* alternatives ssl
 app-crypt/libsecret -*
 app-crypt/p11-kit -*
 app-crypt/pinentry -*
@@ -228,22 +210,29 @@ app-crypt/qca qt6
 app-crypt/rhash -ssl
 app-editors/neovim -nvimpager
 app-editors/vim -minimal -sound terminal
+app-emulation/fs-uae-launcher lha
 app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp virgl
 app-emulation/wine-vanilla -gecko -fontconfig -gstreamer -mono -sdl wow64
 app-emulation/winetricks -kde
 app-eselect/eselect-repository -git
 app-eselect/eselect-wine -xdg
 app-forensics/yara -*
+app-i18n/fcitx -emoji -enchant
+app-i18n/fcitx-qt qt6
+app-i18n/mozc -ibus fcitx5
+app-office/libreoffice -gtk3 -mariadb
 app-portage/portage-utils -*
+app-shells/dash libedit
 app-shells/bash -net
+app-text/hunspell -readline
 app-text/poppler -lcms -nss -utils
 app-text/xmlto text
-dev-cpp/eigen -opengl
+dev-cpp/eigen boost -opengl
 dev-db/sqlite -icu -readline
 dev-debug/gdb -server
 dev-java/openjdk -jbootstrap
 dev-lang/lua -deprecated -readline
-dev-lang/python -ensurepip ncurses
+dev-lang/python ncurses sqlite
 dev-lang/rust profiler mrustc-bootstrap
 dev-lang/rust-bin profiler
 dev-perl/libwww-perl -ssl
@@ -259,5 +248,6 @@ sys-firmware/ipxe -ipv6
 virtual/libusb udev
 virtual/perl-libnet -ssl
 virtual/rust profiler
-www-client/chromium -hangouts -rar -widevine pulseaudio L10N: -*
+www-client/chromium -hangouts -rar -widevine pulseaudio L10N: -* LLVM_SLOT: -20 21
 www-client/w3m -*
+media-sound/deadbeef cover -nullout -supereq

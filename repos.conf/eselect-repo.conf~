@@ -1,9 +1,9 @@
 # created by eselect-repo
 
-[guru]
-location = /var/db/repos/guru
+
+
+
+[steam-overlay]
+location = /var/db/repos/steam-overlay
 sync-type = git
-sync-uri = https://github.com/gentoo-mirror/guru.git
-
-
-
+sync-uri = https://github.com/anyc/steam-overlay.git

@@ -2,7 +2,11 @@
 # no binaries!
 dev-lang/rust-bin
 
-llvm-core/llvm:21
->=llvm-core/clang-common-21.1.0
-llvm-runtimes/*:21
 >=dev-lang/python-3.14_rc2
+
+# masked for dependency conflicts between
+# packages: simplescreenrecorder and
+# xf86-input-ati respectively
+#media-video/ffmpeg:0/60.62.62
+#x11-base/xorg-server:0/21.1.20
+#dev-libs/libutf8proc:0/2.11.0
