@@ -1,6 +1,7 @@
 # local flags, applied to all packages
 */* pgo  # MORE OPTIMIZATIONS!!
 */* -cet # intel-specific, i am team RED!
+
 # system stuff, all the very essentials
 sys-apps/coreutils -*
 sys-apps/ethtool -netlink
@@ -81,7 +82,7 @@ dev-qt/qtdeclarative network -sql -ssl -svg
 dev-qt/qtgui dbus -libinput -accessibility -png
 dev-qt/qtmultimedia -pipewire #qml
 dev-qt/qtsql sqlite
-dev-qt/qttools -assistant -qdbus -vulkan -widgets LLVM_SLOT: -20 21
+dev-qt/qttools -assistant -qdbus -vulkan -widgets
 dev-qt/qtwebengine -vaapi -vulkan widgets
 
 # media
@@ -110,8 +111,9 @@ media-libs/libsdl X joystick -alsa
 media-libs/libsdl2 X joystick -alsa -haptic -pulseaudio
 media-libs/libsndfile -alsa
 media-libs/libva X
+media-libs/libvpx postproc
 media-libs/libwebp -*
-media-libs/mesa -proprietary-codecs LLVM_SLOT: -20 21
+media-libs/mesa -proprietary-codecs
 media-libs/openal alsa -gui -sdl -pipewire
 media-libs/opencv -* contrib contribdnn features2d CPU_FLAGS_X86: avx avx2 f16c fma3 popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3
 media-libs/portaudio cxx
@@ -127,6 +129,7 @@ media-sound/mpg123 -*
 media-sound/mpg123-base -alsa -ipv6 -sdl
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
+media-sound/timidity++ alsa ncurses
 media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -vulkan -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 zlib
 media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 -xvid
 media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
@@ -135,9 +138,7 @@ media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
 media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotify -mp3 -mpeg -png -ssl -svg ogg vpx -x264
 
 # networking stuff
-net-im/discord L10N: -* en-US
-net-im/vesktop-bin L10N: -* en-US
-net-libs/gnutls -* pkcs11 tools
+net-libs/gnutls -*
 net-libs/libpsl -icu -idn
 net-libs/nodejs inspector -npm -snapshot
 net-libs/webkit-gtk -lcms -pdf
@@ -192,6 +193,15 @@ x11-misc/xfe -startup-notification
 x11-themes/kvantum qt5
 x11-wm/fvwm3 -go
 
+# cryptography fuckery
+app-crypt/gcr -* gtk
+app-crypt/gnupg -* alternatives ssl
+app-crypt/libsecret -*
+app-crypt/p11-kit -*
+app-crypt/pinentry -*
+app-crypt/qca qt6
+app-crypt/rhash -ssl
+
 # miscellaneous, to be categorized
 app-accessibility/at-spi2-core -*
 app-accessibility/speech-dispatcher -*
@@ -201,17 +211,11 @@ app-arch/libarchive -* bzip2 zstd
 app-arch/p7zip -kde
 app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo
-app-crypt/gcr -* gtk
-app-crypt/gnupg -* alternatives ssl
-app-crypt/libsecret -*
-app-crypt/p11-kit -*
-app-crypt/pinentry -*
-app-crypt/qca qt6
-app-crypt/rhash -ssl
 app-editors/neovim -nvimpager
 app-editors/vim -minimal -sound terminal
 app-emulation/fs-uae-launcher lha
-app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp virgl
+app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp spice virgl QEMU_SOFTMMU_TARGETS: i386 x86_64
+app-emulation/wine-staging -gecko -fontconfig -gstreamer -mono -sdl wow64
 app-emulation/wine-vanilla -gecko -fontconfig -gstreamer -mono -sdl wow64
 app-emulation/winetricks -kde
 app-eselect/eselect-repository -git
@@ -222,8 +226,8 @@ app-i18n/fcitx-qt qt6
 app-i18n/mozc -ibus fcitx5
 app-office/libreoffice -gtk3 -mariadb
 app-portage/portage-utils -*
-app-shells/dash libedit
 app-shells/bash -net
+app-shells/dash libedit
 app-text/hunspell -readline
 app-text/poppler -lcms -nss -utils
 app-text/xmlto text
@@ -237,17 +241,18 @@ dev-lang/rust profiler mrustc-bootstrap
 dev-lang/rust-bin profiler
 dev-perl/libwww-perl -ssl
 dev-qt/qtwidgets -*
+dev-util/librnp -botan
 dev-util/mingw64-toolchain ABI_X86: 32
 dev-vcs/git -gpg -iconv -webdav
 dev-vcs/subversion -*
 gnome-base/gnome-keyring -ssh-agent
 gui-libs/gtk -vulkan
+mail-client/thunderbird eme-free hwaccel system-pipewire
 sci-libs/gsl -deprecated
 sci-libs/libqalculate -readline
 sys-firmware/ipxe -ipv6
 virtual/libusb udev
 virtual/perl-libnet -ssl
 virtual/rust profiler
-www-client/chromium -hangouts -rar -widevine pulseaudio L10N: -* LLVM_SLOT: -20 21
+www-client/chromium -hangouts -rar -widevine pulseaudio L10N: -*
 www-client/w3m -*
-media-sound/deadbeef cover -nullout -supereq

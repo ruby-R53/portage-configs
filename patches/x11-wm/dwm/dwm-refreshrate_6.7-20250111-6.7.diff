@@ -1,0 +1,67 @@
+From 70ad1df8e2a88dd75d8de4ffdd9ae39f11cd42c8 Mon Sep 17 00:00:00 2001
+From: ruby-R53 <enkiferreiracosta867@gmail.com>
+Date: Sun, 11 Jan 2026 18:17:29 -0300
+Subject: [PATCH] dwm: update refreshrate patch for v6.7
+
+---
+ config.def.h |  1 -
+ dwm.c        | 10 ----------
+ 2 files changed, 11 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 81c3fc0..9efa774 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -36,7 +36,6 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95]
+ static const int nmaster     = 1;    /* number of clients in master area */
+ static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+-static const int refreshrate = 120;  /* refresh rate (per second) for client move/resize */
+ 
+ static const Layout layouts[] = {
+ 	/* symbol     arrange function */
+diff --git a/dwm.c b/dwm.c
+index 8f4fa75..c6d05c4 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1149,7 +1149,6 @@ movemouse(const Arg *arg)
+ 	Client *c;
+ 	Monitor *m;
+ 	XEvent ev;
+-	Time lasttime = 0;
+ 
+ 	if (!(c = selmon->sel))
+ 		return;
+@@ -1172,10 +1171,6 @@ movemouse(const Arg *arg)
+ 			handler[ev.type](&ev);
+ 			break;
+ 		case MotionNotify:
+-			if ((ev.xmotion.time - lasttime) <= (1000 / refreshrate))
+-				continue;
+-			lasttime = ev.xmotion.time;
+-
+ 			nx = ocx + (ev.xmotion.x - x);
+ 			ny = ocy + (ev.xmotion.y - y);
+ 			if (abs(selmon->wx - nx) < snap)
+@@ -1304,7 +1299,6 @@ resizemouse(const Arg *arg)
+ 	Client *c;
+ 	Monitor *m;
+ 	XEvent ev;
+-	Time lasttime = 0;
+ 
+ 	if (!(c = selmon->sel))
+ 		return;
+@@ -1326,10 +1320,6 @@ resizemouse(const Arg *arg)
+ 			handler[ev.type](&ev);
+ 			break;
+ 		case MotionNotify:
+-			if ((ev.xmotion.time - lasttime) <= (1000 / refreshrate))
+-				continue;
+-			lasttime = ev.xmotion.time;
+-
+ 			nw = MAX(ev.xmotion.x - ocx - 2 * c->bw + 1, 1);
+ 			nh = MAX(ev.xmotion.y - ocy - 2 * c->bw + 1, 1);
+ 			if (c->mon->wx + nw >= selmon->wx && c->mon->wx + nw <= selmon->wx + selmon->ww
+-- 
+2.52.0
+
