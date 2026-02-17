@@ -1,6 +1,7 @@
-# local flags, applied to all packages
+# local flags, but applied to all packages
 */* pgo  # MORE OPTIMIZATIONS!!
 */* -cet # intel-specific, i am team RED!
+*/* -debuginfod # no need for that
 
 # system stuff, all the very essentials
 sys-apps/coreutils -*
@@ -29,7 +30,6 @@ sys-devel/patch -xattr
 sys-fs/cryptsetup -argon2
 sys-fs/e2fsprogs -tools
 sys-fs/lvm2 -readline
-sys-kernel/dracut -dracut-cpio # we might still need it one day so keep it
 sys-kernel/installkernel efistub
 sys-kernel/linux-firmware -initramfs
 sys-libs/gdbm -readline
@@ -40,10 +40,6 @@ sys-libs/ncurses -stack-realign
 sys-libs/timezone-data leaps-timezone zic-slim
 sys-libs/zlib minizip
 sys-process/psmisc -X
-
-# samba and deps for my win11 vm
-net-fs/cifs-utils -ads
-net-fs/samba -client -regedit -system-mitkrb5
 
 # LLVM/clang stuff
 llvm-core/* default-lld
@@ -66,9 +62,6 @@ dev-python/pyqt6 -* gui network opengl widgets PYTHON_TARGETS: python3_13
 # required for nodejs which's required by chromium
 # no USE flags required by any package however
 net-libs/ngtcp2 -*
-
-# not using any Mozilla packages, so why...
-media-libs/openh264 -plugin
 
 # required for vgmplay
 media-libs/libao -alsa pulseaudio
@@ -94,7 +87,7 @@ media-gfx/feh -*
 media-gfx/fontforge -readline
 media-gfx/qimgv exif video
 media-libs/flac -ogg
-media-libs/freetype -X harfbuzz -svg
+media-libs/freetype -X -svg harfbuzz
 media-libs/gst-plugins-bad -* orc vaapi
 media-libs/gst-plugins-base -* orc
 media-libs/harfbuzz -graphite icu
@@ -116,7 +109,8 @@ media-libs/libwebp -*
 media-libs/mesa -proprietary-codecs
 media-libs/openal alsa -gui -sdl -pipewire
 media-libs/opencv -* contrib contribdnn features2d CPU_FLAGS_X86: avx avx2 f16c fma3 popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3
-media-libs/portaudio cxx
+media-libs/openh264 -plugin # not using any Mozilla stuff
+media-libs/portaudio alsa cxx # required by agbplay
 media-libs/sdl2-image -*
 media-libs/tiff -opengl jpeg zlib
 media-libs/vulkan-loader X
@@ -131,11 +125,9 @@ media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
 media-sound/timidity++ alsa ncurses
 media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -vulkan -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 zlib
-media-video/ffmpeg-compat -X -gnutls -lcms -svg -vaapi -vorbis x264 -xvid
 media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
-media-video/vlc -dts -dvbpsi -encode -gcrypt -gui -jpeg -libsamplerate -libnotify -mp3 -mpeg -png -ssl -svg ogg vpx -x264
 
 # networking stuff
 net-libs/gnutls -*
@@ -155,16 +147,16 @@ net-misc/rsync -*
 net-nds/openldap -cleartext -syslog
 net-print/cups -X
 
-# libraries
+# miscellaneous libraries
 dev-libs/boost -context -icu -stacktrace
-dev-libs/elfutils -utils
+dev-libs/elfutils -libarchive -utils
 dev-libs/expat -*
 dev-libs/glib -elf -xattr
 dev-libs/gmp -cpudetection
 dev-libs/libevent -ssl
 dev-libs/libffi -*
 dev-libs/libgit2 -ssh
-dev-libs/libpcre2 jit -pcre32 -readline unicode
+dev-libs/libpcre2 -pcre32 -readline jit unicode
 dev-libs/libtomcrypt -* gmp
 dev-libs/libusb udev
 dev-libs/libxml2 -ftp -readline icu
@@ -190,41 +182,60 @@ x11-libs/pango X
 x11-libs/vte -icu
 x11-misc/xdg-utils -plasma
 x11-misc/xfe -startup-notification
-x11-themes/kvantum qt5
-x11-wm/fvwm3 -go
 
 # cryptography fuckery
 app-crypt/gcr -* gtk
-app-crypt/gnupg -* alternatives ssl
+app-crypt/gnupg -* alternatives
 app-crypt/libsecret -*
 app-crypt/p11-kit -*
 app-crypt/pinentry -*
 app-crypt/qca qt6
 app-crypt/rhash -ssl
 
-# miscellaneous, to be categorized
-app-accessibility/at-spi2-core -*
-app-accessibility/speech-dispatcher -*
-app-admin/doas persist
-app-alternatives/sh -bash dash
+# for Kdenlive
+dev-libs/glib introspection
+dev-python/pygobject -cairo
+dev-python/pyqt6 ssl
+dev-qt/qtbase icu libproxy ssl vulkan xml
+media-video/ffmpeg X libass
+media-libs/mlt -opengl ffmpeg frei0r qt6 sdl xml
+media-libs/opencv ffmpeg
+media-plugins/frei0r-plugins -facedetect -scale0tilt
+kde-frameworks/kconfig dbus
+kde-frameworks/kded -man
+kde-frameworks/kio -kwallet
+kde-frameworks/kservice -man
+kde-frameworks/prison qml
+kde-frameworks/sonnet -hunspell qml
+sys-auth/elogind -pam
+sys-block/parted -readline
+sys-fs/udisks -daemon
+
+# archiving utilities
 app-arch/libarchive -* bzip2 zstd
 app-arch/p7zip -kde
 app-arch/unzip natspec
 app-arch/xz-utils -extra-filters pgo
-app-editors/neovim -nvimpager
-app-editors/vim -minimal -sound terminal
+
+# emulation (or close to that)
 app-emulation/fs-uae-launcher lha
 app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp spice virgl QEMU_SOFTMMU_TARGETS: i386 x86_64
-app-emulation/wine-staging -gecko -fontconfig -gstreamer -mono -sdl wow64
 app-emulation/wine-vanilla -gecko -fontconfig -gstreamer -mono -sdl wow64
 app-emulation/winetricks -kde
+games-emulation/dolphin discord-presence pulseaudio
+
+# miscellaneous, to be categorized
+app-accessibility/at-spi2-core -* PYTHON_TARGETS: python3_13
+app-accessibility/speech-dispatcher -*
+app-admin/doas persist
+app-alternatives/sh -bash dash
+app-editors/neovim -nvimpager
 app-eselect/eselect-repository -git
 app-eselect/eselect-wine -xdg
 app-forensics/yara -*
 app-i18n/fcitx -emoji -enchant
 app-i18n/fcitx-qt qt6
 app-i18n/mozc -ibus fcitx5
-app-office/libreoffice -gtk3 -mariadb
 app-portage/portage-utils -*
 app-shells/bash -net
 app-shells/dash libedit
@@ -237,8 +248,7 @@ dev-debug/gdb -server
 dev-java/openjdk -jbootstrap
 dev-lang/lua -deprecated -readline
 dev-lang/python ncurses sqlite
-dev-lang/rust profiler mrustc-bootstrap
-dev-lang/rust-bin profiler
+dev-lang/rust -clippy -doc -rustfmt
 dev-perl/libwww-perl -ssl
 dev-qt/qtwidgets -*
 dev-util/librnp -botan
@@ -255,4 +265,4 @@ virtual/libusb udev
 virtual/perl-libnet -ssl
 virtual/rust profiler
 www-client/chromium -hangouts -rar -widevine pulseaudio L10N: -*
-www-client/w3m -*
+www-client/w3m -* # this is only required by app-text/xmlto, which is required by chromium
