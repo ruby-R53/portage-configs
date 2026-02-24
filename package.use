@@ -69,10 +69,10 @@ media-libs/libao -alsa pulseaudio
 # Qt stuff
 */* -qml # only some will require it
 dev-qt/designer -declarative
-dev-qt/qt5compat icu qml
+dev-qt/qt5compat icu
 dev-qt/qtbase dbus -sql -ssl -libinput -vulkan
 dev-qt/qtdeclarative network -sql -ssl -svg
-dev-qt/qtgui dbus -libinput -accessibility -png
+dev-qt/qtgui -libinput -accessibility -png -vulkan dbus
 dev-qt/qtmultimedia -pipewire #qml
 dev-qt/qtsql sqlite
 dev-qt/qttools -assistant -qdbus -vulkan -widgets
@@ -124,12 +124,13 @@ media-sound/mpg123-base -alsa -ipv6 -sdl
 media-sound/openmpt123 pulseaudio -sdl
 media-sound/sox -ogg -png
 media-sound/timidity++ alsa ncurses
-media-video/ffmpeg -X -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -vulkan -xvid chromium hardcoded-tables lame libdrm openh264 opus sdl vpx x264 zlib
+media-video/ffmpeg -X -drm -gnutls -iconv -lcms -network -pic -postproc -svg -vorbis -vulkan -xvid chromium hardcoded-tables lame openh264 opus sdl vpx x264 zlib
 media-video/mpv -X -alsa -cli -iconv -uchardet -vulkan
 media-video/pipewire -X pipewire-alsa -readline sound-server -ssl
 media-video/simplescreenrecorder -mp3 pulseaudio -vorbis x264
 
 # networking stuff
+net-im/discord L10N: -*
 net-libs/gnutls -*
 net-libs/libpsl -icu -idn
 net-libs/nodejs inspector -npm -snapshot
@@ -144,6 +145,7 @@ net-misc/modemmanager -mbim -qmi -qrtr
 net-misc/networkmanager -concheck gnutls -nss -modemmanager -ppp -tools -wext
 net-misc/openssh -ssl
 net-misc/rsync -*
+net-misc/wget gnutls
 net-nds/openldap -cleartext -syslog
 net-print/cups -X
 
@@ -220,7 +222,8 @@ app-arch/xz-utils -extra-filters pgo
 # emulation (or close to that)
 app-emulation/fs-uae-launcher lha
 app-emulation/qemu -alsa -curl -gnutls -jpeg -pin-upstream-blobs -png -xattr io-uring usb sdl seccomp spice virgl QEMU_SOFTMMU_TARGETS: i386 x86_64
-app-emulation/wine-vanilla -gecko -fontconfig -gstreamer -mono -sdl wow64
+app-emulation/wine-gecko ABI_X86: 32
+app-emulation/wine-vanilla -fontconfig -gstreamer -mono -sdl wow64
 app-emulation/winetricks -kde
 games-emulation/dolphin discord-presence pulseaudio
 
@@ -248,7 +251,7 @@ dev-debug/gdb -server
 dev-java/openjdk -jbootstrap
 dev-lang/lua -deprecated -readline
 dev-lang/python ncurses sqlite
-dev-lang/rust -clippy -doc -rustfmt
+dev-lang/rust -clippy -doc
 dev-perl/libwww-perl -ssl
 dev-qt/qtwidgets -*
 dev-util/librnp -botan
